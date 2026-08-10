@@ -3,408 +3,406 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تطبيق تبيان - إدارة الديون والالتزامات المالية</title>
+    <title>تبيان | لإدارة الديون والالتزامات المالية</title>
     <link rel="icon" type="image/png" href="app-icon.png">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --primary: #014CC1;
-            --secondary: #F5BA38;
-            --dark-text: #2E3336;
-            --light-bg: #EEF3F9;
-            --success: #3CAA6B;
-            --white: #ffffff;
-            --card-shadow: 0 10px 30px rgba(1, 76, 193, 0.08);
+            --primary-blue: #0d47a1;
+            --dark-blue: #0a2540;
+            --accent-gold: #f5ba38;
+            --bg-light: #f8fafc;
+            --card-bg: #ffffff;
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Cairo', sans-serif;
+            font-family: 'Tajawal', sans-serif;
             -webkit-tap-highlight-color: transparent;
         }
 
         body {
-            background-color: var(--light-bg);
-            color: var(--dark-text);
-            line-height: 1.7;
-            padding-bottom: 60px;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
         }
 
-        /* Header */
-        header {
-            background-color: var(--white);
-            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            padding: 10px 20px;
+        /* Hero Header Section */
+        .hero-section {
+            background: linear-gradient(135deg, var(--dark-blue) 0%, var(--primary-blue) 100%);
+            position: relative;
+            color: #ffffff;
+            padding: 20px 20px 60px 20px;
+            overflow: hidden;
         }
 
-        .header-container {
-            max-width: 1100px;
-            margin: 0 auto;
+        /* Subtle Background Pattern */
+        .hero-pattern {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50px;
+            background-image: url('pattern.png');
+            background-repeat: repeat-x;
+            background-size: contain;
+            opacity: 0.12;
+            pointer-events: none;
+        }
+
+        /* Top Navigation Header */
+        .top-nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            max-width: 1000px;
+            margin: 0 auto 30px auto;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .brand-header {
+        .nav-logo {
+            height: 28px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .center-tag {
             display: flex;
             align-items: center;
-            gap: 12px;
-            text-decoration: none;
-            color: var(--dark-text);
+            gap: 8px;
+            font-size: 0.82rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
         }
 
-        .header-app-icon {
-            height: 40px;
-            width: 40px;
-            border-radius: 10px;
-            object-fit: cover;
+        .badge-approved {
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #4ade80;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.72rem;
+            font-weight: 700;
         }
 
-        .brand-title {
-            font-size: 1.15rem;
-            font-weight: 800;
-            color: var(--primary);
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, var(--primary) 0%, #00368c 100%);
-            color: var(--white);
+        /* Hero Main Content */
+        .hero-content {
+            max-width: 700px;
+            margin: 0 auto;
             text-align: center;
-            padding: 45px 20px 35px;
             position: relative;
+            z-index: 2;
         }
 
-        .hero-logos {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 20px;
+        .app-main-icon {
+            width: 72px;
+            height: 72px;
+            border-radius: 18px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+            margin-bottom: 15px;
         }
 
-        .hero-logo-ar {
-            max-height: 70px;
-            max-width: 280px;
-            object-fit: contain;
-            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.15));
-        }
-
-        .hero-logo-en {
-            max-height: 35px;
-            opacity: 0.9;
-            object-fit: contain;
-        }
-
-        .hero h1 {
-            font-size: 1.8rem;
+        .hero-title {
+            font-size: 1.6rem;
             font-weight: 800;
             margin-bottom: 10px;
+            letter-spacing: -0.3px;
         }
 
-        .hero p {
-            font-size: 1.05rem;
-            opacity: 0.92;
-            max-width: 600px;
-            margin: 0 auto 25px;
+        .hero-subtitle {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.85);
+            max-width: 520px;
+            margin: 0 auto 25px auto;
+            font-weight: 400;
         }
 
-        .cta-btn {
-            display: inline-block;
-            background-color: var(--secondary);
-            color: var(--dark-text);
-            padding: 12px 35px;
+        .btn-download {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: var(--accent-gold);
+            color: #000000;
             font-weight: 700;
-            border-radius: 50px;
+            font-size: 0.95rem;
+            padding: 12px 32px;
+            border-radius: 30px;
             text-decoration: none;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(245, 186, 56, 0.4);
+            box-shadow: 0 4px 15px rgba(245, 186, 56, 0.3);
+            transition: transform 0.2s ease;
         }
 
-        .cta-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(245, 186, 56, 0.6);
+        .btn-download:active {
+            transform: scale(0.98);
         }
 
-        /* Decorative Pattern Divider */
-        .pattern-divider {
-            width: 100%;
-            overflow: hidden;
-            background-color: var(--primary);
-            line-height: 0;
-            margin-bottom: 35px;
-        }
-
-        .pattern-img {
-            width: 100%;
-            height: auto;
-            max-height: 30px;
-            object-fit: cover;
-            opacity: 0.85;
-        }
-
-        /* Main Container & Interactive Cards */
-        .container {
+        /* Main Container & Tabs */
+        .main-container {
             max-width: 800px;
-            margin: 0 auto;
-            padding: 0 20px;
+            margin: -30px auto 40px auto;
+            padding: 0 15px;
+            position: relative;
+            z-index: 3;
         }
 
-        .cards-list {
+        .tabs-header {
             display: flex;
-            flex-direction: column;
-            gap: 15px;
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 6px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
+            border: 1px solid var(--border-color);
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 10px 15px;
+            border: none;
+            background: transparent;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .tab-btn.active {
+            background: var(--primary-blue);
+            color: #ffffff;
+            box-shadow: 0 2px 10px rgba(13, 71, 161, 0.2);
+        }
+
+        /* Tab Content Cards */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
         }
 
         .card {
-            background-color: var(--white);
-            border-radius: 16px;
-            box-shadow: var(--card-shadow);
-            overflow: hidden;
-            border: 1px solid rgba(1, 76, 193, 0.05);
-            transition: all 0.3s ease;
-        }
-
-        .card-header {
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            user-select: none;
-            background-color: var(--white);
-            transition: background 0.3s;
-        }
-
-        .card-header:hover {
-            background-color: rgba(1, 76, 193, 0.02);
-        }
-
-        .card-title-group {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .card-icon {
-            width: 42px;
-            height: 42px;
-            background-color: rgba(1, 76, 193, 0.08);
-            color: var(--primary);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            font-weight: bold;
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 24px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            margin-bottom: 18px;
         }
 
         .card-title {
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             font-weight: 700;
-            color: var(--dark-text);
+            color: var(--dark-blue);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .arrow-icon {
-            width: 24px;
-            height: 24px;
-            fill: var(--primary);
-            transition: transform 0.3s ease;
+        .card-text {
+            font-size: 0.92rem;
+            color: var(--text-muted);
+            line-height: 1.7;
         }
 
-        .card-body {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease-out, padding 0.3s ease;
-            padding: 0 20px;
-            background-color: #fafbfc;
-            border-top: 1px solid transparent;
-        }
-
-        .card.active {
-            border-color: var(--primary);
-        }
-
-        .card.active .card-header {
-            background-color: rgba(1, 76, 193, 0.04);
-        }
-
-        .card.active .arrow-icon {
-            transform: rotate(180deg);
-        }
-
-        .card.active .card-body {
-            padding: 20px;
-            border-top-color: rgba(1, 76, 193, 0.08);
-            max-height: 1000px;
-        }
-
-        .steps-list, .features-list {
-            list-style: none;
-        }
-
-        .step-item {
+        /* Feature List Styling */
+        .feature-item {
             display: flex;
             align-items: flex-start;
-            gap: 15px;
-            margin-bottom: 15px;
-            background: var(--white);
-            padding: 15px;
-            border-radius: 12px;
-            border-right: 4px solid var(--primary);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+
+        .feature-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .feature-icon {
+            width: 28px;
+            height: 28px;
+            background: rgba(13, 71, 161, 0.08);
+            color: var(--primary-blue);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        /* Step List Styling */
+        .step-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 0;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .step-item:last-child {
+            border-bottom: none;
         }
 
         .step-number {
-            background-color: var(--secondary);
-            color: var(--dark-text);
-            width: 28px;
-            height: 28px;
+            width: 24px;
+            height: 24px;
+            background: var(--primary-blue);
+            color: #ffffff;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: bold;
-            font-size: 0.9rem;
-            flex-shrink: 0;
-        }
-
-        .badge-success {
-            display: inline-block;
-            background-color: rgba(60, 170, 107, 0.15);
-            color: var(--success);
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.85rem;
+            font-size: 0.75rem;
             font-weight: 700;
         }
 
+        /* Footer */
         footer {
             text-align: center;
-            margin-top: 50px;
-            font-size: 0.9rem;
-            color: #777;
+            padding: 20px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border-color);
         }
 
-        .footer-logo {
-            max-height: 30px;
-            margin-top: 10px;
-            opacity: 0.7;
+        footer a {
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        @media (max-width: 480px) {
+            .nav-logo { height: 22px; }
+            .center-tag { font-size: 0.75rem; }
+            .hero-title { font-size: 1.35rem; }
+            .hero-subtitle { font-size: 0.88rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Header -->
-    <header>
-        <div class="header-container">
-            <a href="#" class="brand-header">
-                <img src="app-icon.png" alt="أيقونة تطبيق تبيان" class="header-app-icon">
-                <span class="brand-title">تطبيق تبيان لإدارة الديون</span>
-            </a>
-            <span class="badge-success">النسخة المعتمدة</span>
+    <!-- Hero Header -->
+    <section class="hero-section">
+        <div class="top-nav">
+            <img src="logo-ar.png" alt="تبيان" class="nav-logo">
+            <div class="center-tag">
+                <span>تبيان / لإدارة الديون</span>
+                <span class="badge-approved">معتمد</span>
+            </div>
+            <img src="logo-en.png" alt="TEBYAN" class="nav-logo">
         </div>
-    </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-logos">
-            <img src="logo-ar.png" alt="تبيان" class="hero-logo-ar">
-            <img src="logo-en.png" alt="TEBYAN" class="hero-logo-en">
+        <div class="hero-content">
+            <img src="app-icon.png" alt="شعار تطبيق تبيان" class="app-main-icon">
+            <h1 class="hero-title">إدارة الديون والالتزامات المالية</h1>
+            <p class="hero-subtitle">الحل الذكي والآمن لتنظيم وتسجيل المعاملات الدائنة والمدينة بكل سهولة ودقة.</p>
+            <a href="#download" class="btn-download">
+                تحميل التطبيق الآن
+            </a>
         </div>
-        <h1>إدارة الديون والالتزامات المالية</h1>
-        <p>الحل الذكي والآمن لتنظيم وتسجيل المعاملات الدائنة والمدينة بكل سهولة ودقة.</p>
-        <a href="#download" class="cta-btn">تحميل التطبيق الآن</a>
+
+        <div class="hero-pattern"></div>
     </section>
 
-    <!-- Decorative Pattern Divider -->
-    <div class="pattern-divider">
-        <img src="pattern.png" alt="هوية تبيان" class="pattern-img">
-    </div>
-
-    <!-- Interactive Section -->
-    <div class="container">
-        <div class="cards-list">
-
-            <!-- Card 1 -->
-            <div class="card">
-                <div class="card-header" onclick="toggleCard(this)">
-                    <div class="card-title-group">
-                        <div class="card-icon">★</div>
-                        <div class="card-title">مميزات تطبيق تبيان</div>
-                    </div>
-                    <svg class="arrow-icon" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6z"/></svg>
-                </div>
-                <div class="card-body">
-                    <ul class="features-list">
-                        <li><b>إدارة دقيقة:</b> تتبع السجلات والديون بسهولة عالية.</li>
-                        <li><b>نسخ احتياطي:</b> حماية بياناتك وأرقامك بأعلى معايير الأمان.</li>
-                        <li><b>تقارير واضحة:</b> ملخصات مالية تساعدك على معرفة كافة التزاماتك.</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Card 2 -->
-            <div class="card">
-                <div class="card-header" onclick="toggleCard(this)">
-                    <div class="card-title-group">
-                        <div class="card-icon">👤</div>
-                        <div class="card-title">خطوات تسجيل حساب جديد</div>
-                    </div>
-                    <svg class="arrow-icon" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6z"/></svg>
-                </div>
-                <div class="card-body">
-                    <div class="steps-list">
-                        <div class="step-item">
-                            <div class="step-number">1</div>
-                            <div>
-                                <h4>تحميل التطبيق وتثبيته</h4>
-                                <p>قم بتحميل التطبيق من المتاجر المعتمدة وفتحه على هاتفك.</p>
-                            </div>
-                        </div>
-                        <div class="step-item">
-                            <div class="step-number">2</div>
-                            <div>
-                                <h4>إدخال رقم الهاتف</h4>
-                                <p>أدخل رقم هاتفك وتأكد من استلام رمز التحقق عبر SMS.</p>
-                            </div>
-                        </div>
-                        <div class="step-item">
-                            <div class="step-number">3</div>
-                            <div>
-                                <h4>تأكيد الحساب والبدء</h4>
-                                <p>أدخل اسمك وبيانات النشاط وابدأ بإضافة أول سجل دين مباشرة.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+    <!-- Main Container -->
+    <main class="main-container">
+        
+        <!-- Tab Navigation Header -->
+        <div class="tabs-header">
+            <button class="tab-btn active" onclick="switchTab('about-tab', this)">شرح التطبيق</button>
+            <button class="tab-btn" onclick="switchTab('features-tab', this)">حول التطبيق والمميزات</button>
         </div>
 
-        <footer>
-            <p>&copy; 2026 جميع الحقوق محفوظة لتطبيق تبيان</p>
-            <img src="logo-en.png" alt="TEBYAN" class="footer-logo">
-        </footer>
-    </div>
+        <!-- Tab 1: الشرح المباشر للتطبيق -->
+        <div id="about-tab" class="tab-content active">
+            <div class="card">
+                <h2 class="card-title">ما هو تطبيق تبيان؟</h2>
+                <p class="card-text">
+                    تطبيق <strong>تبيان</strong> هو منصة رقمية مخصصة لإدارة الحسابات والديون الشخصية والتجارية. يتيح لك تسجيل جميع المعاملات المالية الدائنة والمدينة أولاً بأول، مع متابعة الديون المتبقية وسدادها بدقة عالية لتفادي الأخطاء في الحسابات اليومية.
+                </p>
+            </div>
+            <div class="card">
+                <h2 class="card-title">كيف يساعدك التطبيق؟</h2>
+                <p class="card-text">
+                    يقوم التطبيق بحفظ وسجلات كافة التعاملات المالية مع الأفراد أو الجهات، وإرسال تنبيهات وتذكيرات، وتوليد كشوفات حساب واضحة وسهلة المشاركة لضمان حفظ الحقوق المالية بين جميع الأطراف.
+                </p>
+            </div>
+        </div>
 
+        <!-- Tab 2: المميزات وخطوات التسجيل -->
+        <div id="features-tab" class="tab-content">
+            <div class="card">
+                <h2 class="card-title">مميزات تطبيق تبيان</h2>
+                <div class="feature-item">
+                    <div class="feature-icon">✓</div>
+                    <p class="card-text">تسجيل سريع للعمليات المالية (لك / عليك) مع تحديد التواريخ.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">✓</div>
+                    <p class="card-text">حفظ واحتساب تلقائي لإجمالي الديون المتبقية والمستحقة.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">✓</div>
+                    <p class="card-text">إنشاء وتقارير وكشوفات حساب منظمة ومشاركتها بضغطة زر.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">✓</div>
+                    <p class="card-text">نسخ احتياطي آمن وحماية كاملة لبياناتك المالية.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2 class="card-title">خطوات تسجيل حساب جديد</h2>
+                <div class="step-item">
+                    <div class="step-number">1</div>
+                    <p class="card-text">قم بتحميل التطبيق وتثبيته على هاتفك المحمول.</p>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">2</div>
+                    <p class="card-text">أدخل رقم الهاتف لتصلك رسالة التفعيل بنجاح.</p>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">3</div>
+                    <p class="card-text">ابدأ بإضافة أول حساب أو معاملة مالية بكل سهولة.</p>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>جميع الحقوق محفوظة © 2026 <a href="https://almurad-software.com" target="_blank">المراد لحلول البرمجيات</a></p>
+    </footer>
+
+    <!-- Tab Switching Script -->
     <script>
-        function toggleCard(headerElement) {
-            const clickedCard = headerElement.parentElement;
-            const allCards = document.querySelectorAll('.card');
+        function switchTab(tabId, btnElement) {
+            // Hide all tabs
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
 
-            allCards.forEach(card => {
-                if (card !== clickedCard) {
-                    card.classList.remove('active');
-                }
-            });
+            // Remove active class from buttons
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
 
-            clickedCard.classList.toggle('active');
+            // Show selected tab & set active button
+            document.getElementById(tabId).classList.add('active');
+            btnElement.classList.add('active');
         }
     </script>
 </body>
