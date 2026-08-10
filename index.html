@@ -3,395 +3,477 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تبيان | لإدارة الديون والالتزامات المالية</title>
+    <title>تبيان | النظام الذكي لإدارة الديون والالتزامات المالية</title>
     <link rel="icon" type="image/png" href="app-icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700&family=Readex+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --primary-blue: #0d47a1;
-            --dark-blue: #0a2540;
-            --accent-gold: #f5ba38;
-            --bg-light: #f8fafc;
-            --card-bg: #ffffff;
-            --text-dark: #1e293b;
-            --text-muted: #64748b;
-            --border-color: #e2e8f0;
+            --bg-main: #f8fafc;
+            --brand-dark: #0b132b;
+            --brand-primary: #1e40af;
+            --brand-accent: #3b82f6;
+            --cta-gold: #f59e0b;
+            --cta-gold-hover: #d97706;
+            --surface-card: #ffffff;
+            --text-title: #0f172a;
+            --text-body: #475569;
+            --text-muted: #94a3b8;
+            --border-subtle: #e2e8f0;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+            --shadow-md: 0 10px 30px -5px rgba(15, 23, 42, 0.08);
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Tajawal', sans-serif;
+            font-family: 'Readex Pro', sans-serif;
             -webkit-tap-highlight-color: transparent;
         }
 
         body {
-            background-color: var(--bg-light);
-            color: var(--text-dark);
+            background-color: var(--bg-main);
+            color: var(--text-title);
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        /* Hero Header Section */
-        .hero-section {
-            background: linear-gradient(135deg, var(--dark-blue) 0%, var(--primary-blue) 100%);
-            position: relative;
+        /* Hero Container */
+        .hero-wrapper {
+            background: radial-gradient(100% 100% at 50% 0%, #1e3a8a 0%, #0b132b 100%);
             color: #ffffff;
-            padding: 18px 20px 45px 20px;
+            padding: 24px 20px 80px 20px;
+            position: relative;
         }
 
-        /* Top Navigation Header */
-        .top-nav {
+        /* Top Brand Navigation */
+        .nav-header {
+            max-width: 960px;
+            margin: 0 auto 40px auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 900px;
-            margin: 0 auto 25px auto;
-            padding-bottom: 12px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 12px 24px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .nav-logo {
-            height: 26px;
+        .brand-logo {
+            height: 28px;
             width: auto;
             object-fit: contain;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
         }
 
-        /* Hero Main Content */
-        .hero-content {
-            max-width: 650px;
+        /* Hero Content Area */
+        .hero-body {
+            max-width: 720px;
             margin: 0 auto;
             text-align: center;
         }
 
-        .app-main-icon {
-            width: 65px;
-            height: 65px;
-            border-radius: 16px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        .app-badge-icon {
+            width: 76px;
+            height: 76px;
+            border-radius: 22px;
+            box-shadow: 0 12px 35px rgba(0,0,0,0.35);
+            margin-bottom: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .main-headline {
+            font-size: 1.85rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            line-height: 1.3;
             margin-bottom: 12px;
+            background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .hero-title {
-            font-size: 1.45rem;
-            font-weight: 800;
-            margin-bottom: 8px;
-            letter-spacing: -0.3px;
+        .sub-headline {
+            font-size: 0.95rem;
+            color: #94a3b8;
+            font-weight: 300;
+            max-width: 520px;
+            margin: 0 auto 28px auto;
         }
 
-        .hero-subtitle {
-            font-size: 0.88rem;
-            color: rgba(255, 255, 255, 0.85);
-            max-width: 480px;
-            margin: 0 auto 20px auto;
-            font-weight: 400;
-        }
-
-        /* Small Download Button */
-        .btn-download {
+        .cta-button {
             display: inline-flex;
             align-items: center;
-            justify-content: center;
-            background: var(--accent-gold);
-            color: #000000;
-            font-weight: 700;
-            font-size: 0.82rem;
-            padding: 8px 22px;
-            border-radius: 20px;
+            gap: 10px;
+            background: var(--cta-gold);
+            color: #0b132b;
+            font-size: 0.88rem;
+            font-weight: 600;
+            padding: 12px 28px;
+            border-radius: 50px;
             text-decoration: none;
-            box-shadow: 0 3px 10px rgba(245, 186, 56, 0.25);
-            transition: transform 0.2s ease;
-        }
-
-        .btn-download:active {
-            transform: scale(0.97);
-        }
-
-        /* Main Container & Tabs */
-        .main-container {
-            max-width: 750px;
-            margin: -22px auto 30px auto;
-            padding: 0 15px;
-            position: relative;
-            z-index: 3;
-        }
-
-        .tabs-header {
-            display: flex;
-            background: var(--card-bg);
-            border-radius: 14px;
-            padding: 5px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
-            margin-bottom: 15px;
-            border: 1px solid var(--border-color);
-        }
-
-        .tab-btn {
-            flex: 1;
-            padding: 9px 12px;
-            border: none;
-            background: transparent;
-            font-size: 0.85rem;
-            font-weight: 700;
-            color: var(--text-muted);
-            border-radius: 10px;
-            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.25);
             transition: all 0.25s ease;
         }
 
-        .tab-btn.active {
-            background: var(--primary-blue);
+        .cta-button:hover {
+            background: var(--cta-gold-hover);
+            transform: translateY(-2px);
+        }
+
+        /* Content Section */
+        .content-container {
+            max-width: 900px;
+            margin: -40px auto 60px auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Navigation Tabs */
+        .nav-tabs {
+            display: flex;
+            background: var(--surface-card);
+            padding: 6px;
+            border-radius: 16px;
+            border: 1px solid var(--border-subtle);
+            box-shadow: var(--shadow-md);
+            margin-bottom: 24px;
+        }
+
+        .tab-link {
+            flex: 1;
+            padding: 12px 16px;
+            border: none;
+            background: transparent;
+            font-size: 0.88rem;
+            font-weight: 500;
+            color: var(--text-body);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .tab-link.active {
+            background: var(--brand-dark);
             color: #ffffff;
-            box-shadow: 0 2px 8px rgba(13, 71, 161, 0.18);
+            font-weight: 600;
+            box-shadow: var(--shadow-sm);
         }
 
-        /* Tab Content */
-        .tab-content {
+        /* Tab Panels */
+        .tab-panel {
             display: none;
+            animation: fadeIn 0.3s ease-in-out;
         }
 
-        .tab-content.active {
+        .tab-panel.active {
             display: block;
         }
 
-        /* General Card Styling */
-        .card {
-            background: var(--card-bg);
-            border-radius: 14px;
-            padding: 18px 20px;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
-            margin-bottom: 12px;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .card-title {
+        /* Feature Cards Grid */
+        .grid-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 16px;
+        }
+
+        .info-card {
+            background: var(--surface-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+            border-color: #cbd5e1;
+        }
+
+        .card-icon-wrapper {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: #eff6ff;
+            color: var(--brand-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+
+        .card-heading {
             font-size: 1rem;
-            font-weight: 700;
-            color: var(--dark-blue);
+            font-weight: 600;
+            color: var(--text-title);
             margin-bottom: 8px;
         }
 
-        .card-text {
+        .card-description {
             font-size: 0.86rem;
-            color: var(--text-muted);
+            color: var(--text-body);
             line-height: 1.65;
         }
 
-        /* Accordion Cards (فتح وإغلاق) */
-        .accordion-card {
-            background: var(--card-bg);
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-            margin-bottom: 10px;
-            overflow: hidden;
-            transition: border-color 0.2s ease;
+        /* Stats Bar */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            background: var(--surface-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            padding: 20px;
+            margin-top: 24px;
+            text-align: center;
         }
 
-        .accordion-header {
+        .stat-item h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--brand-primary);
+        }
+
+        .stat-item p {
+            font-size: 0.78rem;
+            color: var(--text-body);
+        }
+
+        /* Accordion Style */
+        .accordion-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .accordion-item {
+            background: var(--surface-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            transition: all 0.2s ease;
+        }
+
+        .accordion-btn {
             width: 100%;
-            padding: 12px 16px;
+            padding: 16px 20px;
             background: transparent;
             border: none;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 0.88rem;
-            font-weight: 700;
-            color: var(--dark-blue);
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-title);
             cursor: pointer;
             text-align: right;
         }
 
-        .accordion-icon {
-            font-size: 0.8rem;
-            color: var(--primary-blue);
+        .accordion-chevron {
+            width: 18px;
+            height: 18px;
             transition: transform 0.3s ease;
+            color: var(--text-muted);
         }
 
-        .accordion-body {
+        .accordion-panel {
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.3s cubic-bezier(0, 1, 0, 1), padding 0.3s ease;
-            padding: 0 16px;
-            background: #fafbfc;
+            padding: 0 20px;
+            background: #f8fafc;
         }
 
-        .accordion-card.open {
-            border-color: var(--primary-blue);
+        .accordion-item.active {
+            border-color: var(--brand-accent);
         }
 
-        .accordion-card.open .accordion-icon {
+        .accordion-item.active .accordion-chevron {
             transform: rotate(180deg);
+            color: var(--brand-accent);
         }
 
-        .accordion-card.open .accordion-body {
-            max-height: 200px;
-            padding: 10px 16px 14px 16px;
-            border-top: 1px solid #f0f4f8;
+        .accordion-item.active .accordion-panel {
+            max-height: 180px;
+            padding: 12px 20px 16px 20px;
+            border-top: 1px solid var(--border-subtle);
         }
 
         /* Footer */
-        footer {
+        .footer-bar {
             text-align: center;
-            padding: 18px;
-            font-size: 0.78rem;
+            padding: 24px 20px;
+            border-top: 1px solid var(--border-subtle);
+            font-size: 0.8rem;
             color: var(--text-muted);
-            border-top: 1px solid var(--border-color);
+            background: #ffffff;
         }
 
-        footer a {
-            color: var(--primary-blue);
+        .footer-bar a {
+            color: var(--brand-primary);
             text-decoration: none;
-            font-weight: 700;
+            font-weight: 600;
         }
 
-        @media (max-width: 480px) {
-            .nav-logo { height: 21px; }
-            .hero-title { font-size: 1.25rem; }
-            .hero-subtitle { font-size: 0.82rem; }
+        @media (max-width: 600px) {
+            .nav-header { padding: 10px 16px; margin-bottom: 28px; }
+            .brand-logo { height: 22px; }
+            .main-headline { font-size: 1.45rem; }
+            .sub-headline { font-size: 0.85rem; }
+            .stats-bar { grid-template-columns: 1fr; gap: 16px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Hero Header -->
-    <section class="hero-section">
-        <div class="top-nav">
-            <img src="logo-ar.png" alt="تبيان" class="nav-logo">
-            <img src="logo-en.png" alt="TEBYAN" class="nav-logo">
-        </div>
+    <!-- Hero Wrapper -->
+    <header class="hero-wrapper">
+        <nav class="nav-header">
+            <img src="logo-ar.png" alt="تبيان" class="brand-logo">
+            <img src="logo-en.png" alt="TEBYAN" class="brand-logo">
+        </nav>
 
-        <div class="hero-content">
-            <img src="app-icon.png" alt="شعار تطبيق تبيان" class="app-main-icon">
-            <h1 class="hero-title">إدارة الديون والالتزامات المالية</h1>
-            <p class="hero-subtitle">الحل الذكي والآمن لتنظيم وتسجيل المعاملات الدائنة والمدينة بكل سهولة ودقة.</p>
-            <a href="#download" class="btn-download">
-                تحميل التطبيق الآن
+        <div class="hero-body">
+            <img src="app-icon.png" alt="شعار تطبيق تبيان" class="app-badge-icon">
+            <h1 class="main-headline">النظام الذكي لإدارة الديون والحسابات</h1>
+            <p class="sub-headline">حل رقمي آمن ومُصمم بعناية لتنظيم كافة المعاملات المالية الدائنة والمدينة بكل سهولة ودقة.</p>
+            <a href="#download" class="cta-button">
+                <span>تحميل التطبيق الآن</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             </a>
         </div>
-    </section>
+    </header>
 
-    <!-- Main Container -->
-    <main class="main-container">
-        
-        <!-- Tab Navigation Header -->
-        <div class="tabs-header">
-            <button class="tab-btn active" onclick="switchTab('about-tab', this)">شرح التطبيق</button>
-            <button class="tab-btn" onclick="switchTab('features-tab', this)">حول التطبيق والمميزات</button>
+    <!-- Content Area -->
+    <main class="content-container">
+
+        <!-- Navigation Tabs -->
+        <div class="nav-tabs">
+            <button class="tab-link active" onclick="activateTab('overview', this)">نظرة عامة</button>
+            <button class="tab-link" onclick="activateTab('features', this)">المميزات الذكية</button>
         </div>
 
-        <!-- Tab 1: الشرح المباشر للتطبيق -->
-        <div id="about-tab" class="tab-content active">
-            <div class="card">
-                <h2 class="card-title">ما هو تطبيق تبيان؟</h2>
-                <p class="card-text">
-                    تطبيق <strong>تبيان</strong> هو منصة رقمية مخصصة لإدارة الحسابات والديون الشخصية والتجارية. يتيح لك تسجيل جميع المعاملات المالية الدائنة والمدينة أولاً بأول، مع متابعة الديون المتبقية وسدادها بدقة عالية لتفادي الأخطاء في الحسابات اليومية.
-                </p>
+        <!-- Panel 1: Overview -->
+        <div id="overview" class="tab-panel active">
+            <div class="grid-cards">
+                <div class="info-card">
+                    <div class="card-icon-wrapper">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
+                    <h3 class="card-heading">إدارة مالية دقيقة</h3>
+                    <p class="card-description">تتبع كامل للالتزامات والمستحقات الفردية أو التجارية مع نظام توثيق فوري يمنع أخطاء الحسابات التقليدية.</p>
+                </div>
+
+                <div class="info-card">
+                    <div class="card-icon-wrapper">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                    </div>
+                    <h3 class="card-heading">كشوفات حساب تفصيلية</h3>
+                    <p class="card-description">توليد تقارير مالية منظمة بصيغة PDF جاهزة للمشاركة المباشرة عبر وسائل التواصل بضغطة زر.</p>
+                </div>
             </div>
-            <div class="card">
-                <h2 class="card-title">كيف يساعدك التطبيق؟</h2>
-                <p class="card-text">
-                    يقوم التطبيق بحفظ وسجلات كافة التعاملات المالية مع الأفراد أو الجهات، وإرسال تنبيهات وتذكيرات، وتوليد كشوفات حساب واضحة وسهلة المشاركة لضمان حفظ الحقوق المالية بين جميع الأطراف.
-                </p>
+
+            <!-- Stats Bar -->
+            <div class="stats-bar">
+                <div class="stat-item">
+                    <h3>100%</h3>
+                    <p>دقة ودقة في الحسابات</p>
+                </div>
+                <div class="stat-item">
+                    <h3>تشفير عالٍ</h3>
+                    <p>لحماية بياناتك المالية</p>
+                </div>
+                <div class="stat-item">
+                    <h3>نسخ آلي</h3>
+                    <p>استعادة فورية للبيانات</p>
+                </div>
             </div>
         </div>
 
-        <!-- Tab 2: المميزات بأسلوب الكروت القابلة للفتح والإغلاق -->
-        <div id="features-tab" class="tab-content">
-            
-            <!-- Card 1 -->
-            <div class="accordion-card">
-                <button class="accordion-header" onclick="toggleAccordion(this)">
-                    <span>✓ تسجيل سريع للعمليات المالية</span>
-                    <span class="accordion-icon">▼</span>
-                </button>
-                <div class="accordion-body">
-                    <p class="card-text">إمكانية إضافة المعاملات الدائنة والمدينة فور حدوثها وتحديد تاريخ الاستحقاق وتفاصيل العملية بضغطة زر.</p>
-                </div>
-            </div>
+        <!-- Panel 2: Features Accordion -->
+        <div id="features" class="tab-panel">
+            <div class="accordion-wrapper">
 
-            <!-- Card 2 -->
-            <div class="accordion-card">
-                <button class="accordion-header" onclick="toggleAccordion(this)">
-                    <span>✓ احتساب تلقائي للديون المتبقية</span>
-                    <span class="accordion-icon">▼</span>
-                </button>
-                <div class="accordion-body">
-                    <p class="card-text">يقوم النظام بحساب إجمالي المستحقات والالتزامات وإظهار المبالغ المتبقية والسدادات الجزئية بدقة فائقة.</p>
+                <div class="accordion-item">
+                    <button class="accordion-btn" onclick="toggleAcc(this)">
+                        <span>تسجيل سريع ومباشر للمعاملات</span>
+                        <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <div class="accordion-panel">
+                        <p class="card-description">إدخال المبالغ المستحقة لك أو عليك في ثوانٍ معدودة مع تدوين الملاحظات وتحديد مواعيد السداد.</p>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Card 3 -->
-            <div class="accordion-card">
-                <button class="accordion-header" onclick="toggleAccordion(this)">
-                    <span>✓ تقارير وكشوفات حساب منظمة</span>
-                    <span class="accordion-icon">▼</span>
-                </button>
-                <div class="accordion-body">
-                    <p class="card-text">توليد كشوفات حساب تفصيلية جاهزة للطباعة أو المشاركة كملف PDF مع الأطراف الأخرى لمراجعة الحسابات.</p>
+                <div class="accordion-item">
+                    <button class="accordion-btn" onclick="toggleAcc(this)">
+                        <span>احتساب آلي ومتابعة المتبقي</span>
+                        <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <div class="accordion-panel">
+                        <p class="card-description">حساب السداد الجزئي أو الكلي تلقائياً مع تسوية أرصدة العملاء دون الحاجة لمعادلات يدوية.</p>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Card 4 -->
-            <div class="accordion-card">
-                <button class="accordion-header" onclick="toggleAccordion(this)">
-                    <span>✓ نسخ احتياطي آمن للبيانات</span>
-                    <span class="accordion-icon">▼</span>
-                </button>
-                <div class="accordion-body">
-                    <p class="card-text">حماية كاملة لسجلاتك المالية مع إمكانية استعادة كافة البيانات والحسابات عند تغيير الهاتف بسهولة.</p>
+                <div class="accordion-item">
+                    <button class="accordion-btn" onclick="toggleAcc(this)">
+                        <span>أمان ونسخ احتياطي للبيانات</span>
+                        <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <div class="accordion-panel">
+                        <p class="card-description">تخزين البيانات المالية بأمان مع إمكانية الوصول لحسابك وإعادة استرداده بسهولة عبر هاتفك.</p>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Card 5 (خطوات التسجيل) -->
-            <div class="accordion-card">
-                <button class="accordion-header" onclick="toggleAccordion(this)">
-                    <span>📲 خطوات تسجيل حساب جديد</span>
-                    <span class="accordion-icon">▼</span>
-                </button>
-                <div class="accordion-body">
-                    <p class="card-text">1. قم بتحميل التطبيق وتثبيته.<br>2. أدخل رقم الهاتف للتفعيل.<br>3. ابدأ بإضافة حسابك الأول مباشرة.</p>
+                <div class="accordion-item">
+                    <button class="accordion-btn" onclick="toggleAcc(this)">
+                        <span>خطوات التسجيل والبدء</span>
+                        <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <div class="accordion-panel">
+                        <p class="card-description">قم بتنزيل التطبيق، ثم أدخل رقم هاتفك لتصلك رسالة التفعيل، وابدأ بإضافة حساباتك فوراً.</p>
+                    </div>
                 </div>
-            </div>
 
+            </div>
         </div>
 
     </main>
 
     <!-- Footer -->
-    <footer>
+    <footer class="footer-bar">
         <p>جميع الحقوق محفوظة © 2026 <a href="https://almurad-software.com" target="_blank">المراد لحلول البرمجيات</a></p>
     </footer>
 
-    <!-- Interactive Logic Script -->
+    <!-- Interactive Script -->
     <script>
-        // Tab Switching Function
-        function switchTab(tabId, btnElement) {
-            const contents = document.querySelectorAll('.tab-content');
-            contents.forEach(content => content.classList.remove('active'));
-
-            const buttons = document.querySelectorAll('.tab-btn');
-            buttons.forEach(btn => btn.classList.remove('active'));
-
+        function activateTab(tabId, el) {
+            document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.tab-link').forEach(b => b.classList.remove('active'));
             document.getElementById(tabId).classList.add('active');
-            btnElement.classList.add('active');
+            el.classList.add('active');
         }
 
-        // Smooth Accordion Open/Close Logic
-        function toggleAccordion(headerBtn) {
-            const parentCard = headerBtn.parentElement;
-            const isOpen = parentCard.classList.contains('open');
-
-            // Close all other accordion cards
-            const allCards = document.querySelectorAll('.accordion-card');
-            allCards.forEach(card => card.classList.remove('open'));
-
-            // Toggle selected card
-            if (!isOpen) {
-                parentCard.classList.add('open');
+        function toggleAcc(btn) {
+            const item = btn.parentElement;
+            const isActive = item.classList.contains('active');
+            document.querySelectorAll('.accordion-item').forEach(i => i.classList.remove('active'));
+            if (!isActive) {
+                item.classList.add('active');
             }
         }
     </script>
