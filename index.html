@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>تطبيق تبيان - إدارة الديون والالتزامات المالية</title>
+    <link rel="icon" type="image/png" href="app-icon.png">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -38,7 +39,7 @@
             position: sticky;
             top: 0;
             z-index: 1000;
-            padding: 12px 20px;
+            padding: 10px 20px;
         }
 
         .header-container {
@@ -49,9 +50,25 @@
             align-items: center;
         }
 
-        .logo-img {
-            max-height: 45px;
-            object-fit: contain;
+        .brand-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--dark-text);
+        }
+
+        .header-app-icon {
+            height: 40px;
+            width: 40px;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+
+        .brand-title {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: var(--primary);
         }
 
         /* Hero Section */
@@ -59,29 +76,40 @@
             background: linear-gradient(135deg, var(--primary) 0%, #00368c 100%);
             color: var(--white);
             text-align: center;
-            padding: 50px 20px;
-            border-bottom-left-radius: 30px;
-            border-bottom-right-radius: 30px;
-            box-shadow: 0 15px 30px rgba(1, 76, 193, 0.2);
-            margin-bottom: 30px;
+            padding: 45px 20px 35px;
+            position: relative;
         }
 
-        .hero-banner {
-            max-width: 320px;
-            width: 100%;
+        .hero-logos {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
             margin-bottom: 20px;
-            border-radius: 12px;
+        }
+
+        .hero-logo-ar {
+            max-height: 70px;
+            max-width: 280px;
+            object-fit: contain;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.15));
+        }
+
+        .hero-logo-en {
+            max-height: 35px;
+            opacity: 0.9;
+            object-fit: contain;
         }
 
         .hero h1 {
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: 800;
             margin-bottom: 10px;
         }
 
         .hero p {
-            font-size: 1.1rem;
-            opacity: 0.9;
+            font-size: 1.05rem;
+            opacity: 0.92;
             max-width: 600px;
             margin: 0 auto 25px;
         }
@@ -101,6 +129,23 @@
         .cta-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 8px 20px rgba(245, 186, 56, 0.6);
+        }
+
+        /* Decorative Pattern Divider */
+        .pattern-divider {
+            width: 100%;
+            overflow: hidden;
+            background-color: var(--primary);
+            line-height: 0;
+            margin-bottom: 35px;
+        }
+
+        .pattern-img {
+            width: 100%;
+            height: auto;
+            max-height: 30px;
+            object-fit: cover;
+            opacity: 0.85;
         }
 
         /* Main Container & Interactive Cards */
@@ -172,7 +217,6 @@
             transition: transform 0.3s ease;
         }
 
-        /* Card Content (Hidden by default) */
         .card-body {
             max-height: 0;
             overflow: hidden;
@@ -182,7 +226,6 @@
             border-top: 1px solid transparent;
         }
 
-        /* Active State */
         .card.active {
             border-color: var(--primary);
         }
@@ -198,10 +241,9 @@
         .card.active .card-body {
             padding: 20px;
             border-top-color: rgba(1, 76, 193, 0.08);
-            max-height: 1000px; /* يكفي لاستيعاب المحتوى */
+            max-height: 1000px;
         }
 
-        /* Feature & Step List Styling */
         .steps-list, .features-list {
             list-style: none;
         }
@@ -210,7 +252,7 @@
             display: flex;
             align-items: flex-start;
             gap: 15px;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             background: var(--white);
             padding: 15px;
             border-radius: 12px;
@@ -232,25 +274,6 @@
             flex-shrink: 0;
         }
 
-        .step-content h4 {
-            font-size: 1rem;
-            margin-bottom: 4px;
-            color: var(--primary);
-        }
-
-        .step-content p {
-            font-size: 0.9rem;
-            color: #555;
-        }
-
-        .step-img {
-            width: 100%;
-            max-width: 400px;
-            border-radius: 8px;
-            margin-top: 10px;
-            border: 1px solid #ddd;
-        }
-
         .badge-success {
             display: inline-block;
             background-color: rgba(60, 170, 107, 0.15);
@@ -259,15 +282,19 @@
             border-radius: 20px;
             font-size: 0.85rem;
             font-weight: 700;
-            margin-bottom: 10px;
         }
 
-        /* Footer */
         footer {
             text-align: center;
             margin-top: 50px;
             font-size: 0.9rem;
             color: #777;
+        }
+
+        .footer-logo {
+            max-height: 30px;
+            margin-top: 10px;
+            opacity: 0.7;
         }
     </style>
 </head>
@@ -276,24 +303,35 @@
     <!-- Header -->
     <header>
         <div class="header-container">
-            <img src="logo.png" alt="تطبيق تبيان" class="logo-img">
-            <span class="badge-success">نسخة موثوقة</span>
+            <a href="#" class="brand-header">
+                <img src="app-icon.png" alt="أيقونة تطبيق تبيان" class="header-app-icon">
+                <span class="brand-title">تطبيق تبيان لإدارة الديون</span>
+            </a>
+            <span class="badge-success">النسخة المعتمدة</span>
         </div>
     </header>
 
     <!-- Hero Section -->
     <section class="hero">
-        <img src="logo.png" alt="تطبيق تبيان" class="hero-banner">
-        <h1>تطبيق تبيان - إدارة الديون</h1>
-        <p>الحل الذكي والآمن لتنظيم وتسجيل الالتزامات المالية والمعاملات الدائنة والمدينة بكل سهولة ودقة.</p>
+        <div class="hero-logos">
+            <img src="logo-ar.png" alt="تبيان" class="hero-logo-ar">
+            <img src="logo-en.png" alt="TEBYAN" class="hero-logo-en">
+        </div>
+        <h1>إدارة الديون والالتزامات المالية</h1>
+        <p>الحل الذكي والآمن لتنظيم وتسجيل المعاملات الدائنة والمدينة بكل سهولة ودقة.</p>
         <a href="#download" class="cta-btn">تحميل التطبيق الآن</a>
     </section>
+
+    <!-- Decorative Pattern Divider -->
+    <div class="pattern-divider">
+        <img src="pattern.png" alt="هوية تبيان" class="pattern-img">
+    </div>
 
     <!-- Interactive Section -->
     <div class="container">
         <div class="cards-list">
 
-            <!-- Card 1: مميزات التطبيق -->
+            <!-- Card 1 -->
             <div class="card">
                 <div class="card-header" onclick="toggleCard(this)">
                     <div class="card-title-group">
@@ -311,7 +349,7 @@
                 </div>
             </div>
 
-            <!-- Card 2: خطوات تسجيل الحساب -->
+            <!-- Card 2 -->
             <div class="card">
                 <div class="card-header" onclick="toggleCard(this)">
                     <div class="card-title-group">
@@ -322,60 +360,39 @@
                 </div>
                 <div class="card-body">
                     <div class="steps-list">
-                        
                         <div class="step-item">
                             <div class="step-number">1</div>
-                            <div class="step-content">
+                            <div>
                                 <h4>تحميل التطبيق وتثبيته</h4>
                                 <p>قم بتحميل التطبيق من المتاجر المعتمدة وفتحه على هاتفك.</p>
                             </div>
                         </div>
-
                         <div class="step-item">
                             <div class="step-number">2</div>
-                            <div class="step-content">
+                            <div>
                                 <h4>إدخال رقم الهاتف</h4>
                                 <p>أدخل رقم هاتفك وتأكد من استلام رمز التحقق عبر SMS.</p>
-                                <!-- مكان الصورة إن وجدت -->
-                                <!-- <img src="step1.png" class="step-img" alt="خطوة 1"> -->
                             </div>
                         </div>
-
                         <div class="step-item">
                             <div class="step-number">3</div>
-                            <div class="step-content">
+                            <div>
                                 <h4>تأكيد الحساب والبدء</h4>
                                 <p>أدخل اسمك وبيانات النشاط وابدأ بإضافة أول سجل دين مباشرة.</p>
                             </div>
                         </div>
-
                     </div>
-                </div>
-            </div>
-
-            <!-- Card 3: مواصفات التطبيق -->
-            <div class="card">
-                <div class="card-header" onclick="toggleCard(this)">
-                    <div class="card-title-group">
-                        <div class="card-icon">⚙</div>
-                        <div class="card-title">المواصفات والمتطلبات التقنية</div>
-                    </div>
-                    <svg class="arrow-icon" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6z"/></svg>
-                </div>
-                <div class="card-body">
-                    <p><b>النظام الموصى به:</b> يعمل على كافة أجهزة Android و iOS.</p>
-                    <p><b>الحجم:</b> خفيف جداً ولا يستهلك ذاكرة الجهاز.</p>
                 </div>
             </div>
 
         </div>
 
         <footer>
-            <p>&copy; 2026 Al-Murad Software Solutions | جميع الحقوق محفوظة لتطبيق تبيان</p>
+            <p>&copy; 2026 جميع الحقوق محفوظة لتطبيق تبيان</p>
+            <img src="logo-en.png" alt="TEBYAN" class="footer-logo">
         </footer>
     </div>
 
-    <!-- JavaScript لإغلاق الكروت السابقة تلقائياً -->
     <script>
         function toggleCard(headerElement) {
             const clickedCard = headerElement.parentElement;
