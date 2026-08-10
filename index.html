@@ -7,19 +7,19 @@
     <link rel="icon" type="image/png" href="app-icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
     <style>
         :root {
             --bg-body: #f8fafc;
-            --hero-bg: #0b132b;
-            --primary-blue: #1e40af;
+            --hero-bg: #070d1f;
+            --primary-blue: #0f3ba2;
             --card-bg: #ffffff;
             --text-title: #0f172a;
             --text-body: #475569;
             --text-muted: #64748b;
             --border-color: #e2e8f0;
-            --accent-gold: #f59e0b;
+            --accent-gold: #f5ba38;
         }
 
         * {
@@ -36,130 +36,177 @@
             line-height: 1.6;
         }
 
-        /* Top Hero Header Bar */
+        /* Expanded Top Hero Header */
         .hero-header {
-            background: linear-gradient(180deg, #070d1f 0%, #0b132b 100%);
-            padding: 30px 20px 90px 20px;
-            text-align: center;
+            background: radial-gradient(100% 100% at 50% 0%, #1a367c 0%, #070d1f 100%);
+            padding: 45px 20px 110px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        .header-banner-img {
-            max-width: 850px;
+        /* Glassmorphism Pill Banner (Responsive CSS Banner) */
+        .header-glass-banner {
             width: 100%;
-            height: auto;
-            object-fit: contain;
-            filter: drop-shadow(0 4px 15px rgba(0, 0, 0, 0.3));
+            max-width: 680px;
+            padding: 10px 28px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
         }
 
-        /* Main Container for Floating Card */
+        .banner-logo-ar {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .banner-logo-ar::after {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background-color: var(--accent-gold);
+            border-radius: 1px;
+        }
+
+        .banner-logo-en {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .banner-logo-en::after {
+            content: '';
+            display: inline-block;
+            width: 5px;
+            height: 5px;
+            background-color: var(--accent-gold);
+            border-radius: 1px;
+        }
+
+        /* Main Wrapper (Thinner & Responsive) */
         .main-wrapper {
-            max-width: 720px;
-            margin: -60px auto 40px auto;
-            padding: 0 16px;
+            max-width: 620px;
+            margin: -70px auto 40px auto;
+            padding: 0 20px;
             position: relative;
             z-index: 10;
         }
 
-        /* Primary White Card (Floating Style like Al-Murad) */
+        /* Primary White Card (Floating Style with Padding Margins) */
         .primary-card {
             background: var(--card-bg);
-            border-radius: 28px;
-            padding: 36px 28px;
-            box-shadow: 0 12px 32px rgba(15, 23, 42, 0.08);
+            border-radius: 26px;
+            padding: 32px 22px;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
             border: 1px solid var(--border-color);
             text-align: center;
         }
 
         .app-main-icon {
-            width: 80px;
-            height: 80px;
-            border-radius: 22px;
-            box-shadow: 0 8px 20px rgba(13, 71, 161, 0.18);
-            margin-bottom: 20px;
+            width: 76px;
+            height: 76px;
+            border-radius: 20px;
+            box-shadow: 0 8px 22px rgba(15, 59, 162, 0.2);
+            margin-bottom: 18px;
+            object-fit: contain;
         }
 
         .app-title-group {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
-            margin-bottom: 8px;
+            gap: 10px;
+            margin-bottom: 6px;
         }
 
         .app-title-ar {
-            font-size: 1.65rem;
-            font-weight: 700;
+            font-size: 1.55rem;
+            font-weight: 800;
             color: var(--text-title);
         }
 
         .app-title-divider {
-            color: var(--border-color);
-            font-size: 1.4rem;
+            color: #cbd5e1;
+            font-size: 1.3rem;
             font-weight: 300;
         }
 
         .app-title-en {
-            font-size: 1.5rem;
-            font-weight: 600;
+            font-size: 1.4rem;
+            font-weight: 700;
             color: var(--text-title);
         }
 
         .app-sub-tag {
-            font-size: 0.92rem;
+            font-size: 0.9rem;
             color: var(--primary-blue);
-            font-weight: 500;
-            margin-bottom: 20px;
+            font-weight: 600;
+            margin-bottom: 18px;
         }
 
         .app-description {
-            font-size: 0.88rem;
+            font-size: 0.86rem;
             color: var(--text-body);
             line-height: 1.8;
-            max-width: 580px;
-            margin: 0 auto 28px auto;
+            max-width: 520px;
+            margin: 0 auto 24px auto;
         }
 
         .cta-download-btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
             background: var(--primary-blue);
             color: #ffffff;
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             font-weight: 600;
-            padding: 12px 32px;
+            padding: 11px 30px;
             border-radius: 50px;
             text-decoration: none;
-            box-shadow: 0 4px 16px rgba(30, 64, 175, 0.25);
+            box-shadow: 0 4px 15px rgba(15, 59, 162, 0.25);
             transition: all 0.25s ease;
         }
 
-        .cta-download-btn:hover {
-            background: #1e3a8a;
-            transform: translateY(-2px);
+        .cta-download-btn:active {
+            transform: scale(0.98);
         }
 
-        /* Navigation Tabs Header */
+        /* Section Tabs */
         .tabs-nav {
             display: flex;
             background: #ffffff;
-            border-radius: 16px;
+            border-radius: 14px;
             padding: 5px;
             border: 1px solid var(--border-color);
-            margin-top: 20px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            margin-top: 18px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
         }
 
         .tab-btn {
             flex: 1;
-            padding: 10px 14px;
+            padding: 10px 12px;
             border: none;
             background: transparent;
-            font-size: 0.86rem;
-            font-weight: 500;
+            font-size: 0.85rem;
+            font-weight: 600;
             color: var(--text-body);
-            border-radius: 12px;
+            border-radius: 10px;
             cursor: pointer;
             transition: all 0.2s ease;
         }
@@ -167,13 +214,12 @@
         .tab-btn.active {
             background: var(--hero-bg);
             color: #ffffff;
-            font-weight: 600;
         }
 
         /* Content Sections */
         .tab-content {
             display: none;
-            margin-top: 16px;
+            margin-top: 14px;
         }
 
         .tab-content.active {
@@ -182,22 +228,22 @@
 
         .sec-card {
             background: #ffffff;
-            border-radius: 18px;
-            padding: 20px;
+            border-radius: 16px;
+            padding: 18px;
             border: 1px solid var(--border-color);
-            margin-bottom: 12px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+            margin-bottom: 10px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
         }
 
         .sec-title {
-            font-size: 0.95rem;
+            font-size: 0.92rem;
             font-weight: 700;
             color: var(--text-title);
             margin-bottom: 6px;
         }
 
         .sec-text {
-            font-size: 0.85rem;
+            font-size: 0.84rem;
             color: var(--text-body);
             line-height: 1.65;
         }
@@ -213,13 +259,13 @@
 
         .accordion-header {
             width: 100%;
-            padding: 14px 18px;
+            padding: 13px 16px;
             background: transparent;
             border: none;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 0.88rem;
+            font-size: 0.86rem;
             font-weight: 600;
             color: var(--text-title);
             cursor: pointer;
@@ -230,7 +276,7 @@
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.3s ease, padding 0.3s ease;
-            padding: 0 18px;
+            padding: 0 16px;
             background: #f8fafc;
         }
 
@@ -240,15 +286,15 @@
 
         .accordion-item.open .accordion-body {
             max-height: 160px;
-            padding: 10px 18px 14px 18px;
+            padding: 10px 16px 14px 16px;
             border-top: 1px solid var(--border-color);
         }
 
         /* Footer */
         footer {
             text-align: center;
-            padding: 24px;
-            font-size: 0.8rem;
+            padding: 22px 20px;
+            font-size: 0.78rem;
             color: var(--text-muted);
             border-top: 1px solid var(--border-color);
             background: #ffffff;
@@ -260,26 +306,34 @@
             font-weight: 600;
         }
 
-        @media (max-width: 500px) {
-            .hero-header { padding: 20px 12px 75px 12px; }
-            .primary-card { padding: 28px 18px; }
+        @media (max-width: 480px) {
+            .hero-header { padding: 35px 15px 95px 15px; }
+            .header-glass-banner { padding: 8px 18px; }
+            .banner-logo-ar { font-size: 1.1rem; }
+            .banner-logo-en { font-size: 1.05rem; }
+            .main-wrapper { padding: 0 16px; margin-top: -65px; }
+            .primary-card { padding: 26px 16px; }
             .app-title-ar { font-size: 1.35rem; }
             .app-title-en { font-size: 1.25rem; }
-            .app-description { font-size: 0.83rem; }
+            .app-description { font-size: 0.82rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Header Section with Image Banner -->
+    <!-- Header Section with Expanded Blue Background -->
     <header class="hero-header">
-        <img src="header-banner.png" alt="تبيان Tebyan" class="header-banner-img">
+        <!-- Glassmorphism Banner -->
+        <div class="header-glass-banner">
+            <span class="banner-logo-en">TEBYAN</span>
+            <span class="banner-logo-ar">تبيان</span>
+        </div>
     </header>
 
-    <!-- Main Wrapper -->
+    <!-- Main Wrapper with Margin Spacing -->
     <main class="main-wrapper">
 
-        <!-- Floating White Card (Exact Al-Murad Style) -->
+        <!-- Primary Floating Card -->
         <div class="primary-card">
             <img src="app-icon.png" alt="تطبيق تبيان" class="app-main-icon">
             
