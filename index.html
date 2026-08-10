@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تطبيق تبيان - إدارة الديون والالتزامات المالية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #014CC1;
+            --secondary: #F5BA38;
+            --dark-text: #2E3336;
+            --light-bg: #EEF3F9;
+            --success: #3CAA6B;
+            --white: #ffffff;
+            --card-shadow: 0 10px 30px rgba(1, 76, 193, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            line-height: 1.7;
+            padding-bottom: 60px;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 12px 20px;
+        }
+
+        .header-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-img {
+            max-height: 45px;
+            object-fit: contain;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, #00368c 100%);
+            color: var(--white);
+            text-align: center;
+            padding: 50px 20px;
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+            box-shadow: 0 15px 30px rgba(1, 76, 193, 0.2);
+            margin-bottom: 30px;
+        }
+
+        .hero-banner {
+            max-width: 320px;
+            width: 100%;
+            margin-bottom: 20px;
+            border-radius: 12px;
+        }
+
+        .hero h1 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 25px;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: var(--dark-text);
+            padding: 12px 35px;
+            font-weight: 700;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(245, 186, 56, 0.4);
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(245, 186, 56, 0.6);
+        }
+
+        /* Main Container & Interactive Cards */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .cards-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .card {
+            background-color: var(--white);
+            border-radius: 16px;
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+            border: 1px solid rgba(1, 76, 193, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .card-header {
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+            background-color: var(--white);
+            transition: background 0.3s;
+        }
+
+        .card-header:hover {
+            background-color: rgba(1, 76, 193, 0.02);
+        }
+
+        .card-title-group {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .card-icon {
+            width: 42px;
+            height: 42px;
+            background-color: rgba(1, 76, 193, 0.08);
+            color: var(--primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .card-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--dark-text);
+        }
+
+        .arrow-icon {
+            width: 24px;
+            height: 24px;
+            fill: var(--primary);
+            transition: transform 0.3s ease;
+        }
+
+        /* Card Content (Hidden by default) */
+        .card-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, padding 0.3s ease;
+            padding: 0 20px;
+            background-color: #fafbfc;
+            border-top: 1px solid transparent;
+        }
+
+        /* Active State */
+        .card.active {
+            border-color: var(--primary);
+        }
+
+        .card.active .card-header {
+            background-color: rgba(1, 76, 193, 0.04);
+        }
+
+        .card.active .arrow-icon {
+            transform: rotate(180deg);
+        }
+
+        .card.active .card-body {
+            padding: 20px;
+            border-top-color: rgba(1, 76, 193, 0.08);
+            max-height: 1000px; /* يكفي لاستيعاب المحتوى */
+        }
+
+        /* Feature & Step List Styling */
+        .steps-list, .features-list {
+            list-style: none;
+        }
+
+        .step-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 20px;
+            background: var(--white);
+            padding: 15px;
+            border-radius: 12px;
+            border-right: 4px solid var(--primary);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        }
+
+        .step-number {
+            background-color: var(--secondary);
+            color: var(--dark-text);
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+
+        .step-content h4 {
+            font-size: 1rem;
+            margin-bottom: 4px;
+            color: var(--primary);
+        }
+
+        .step-content p {
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .step-img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 8px;
+            margin-top: 10px;
+            border: 1px solid #ddd;
+        }
+
+        .badge-success {
+            display: inline-block;
+            background-color: rgba(60, 170, 107, 0.15);
+            color: var(--success);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 0.9rem;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <img src="logo.png" alt="تطبيق تبيان" class="logo-img">
+            <span class="badge-success">نسخة موثوقة</span>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <img src="logo.png" alt="تطبيق تبيان" class="hero-banner">
+        <h1>تطبيق تبيان - إدارة الديون</h1>
+        <p>الحل الذكي والآمن لتنظيم وتسجيل الالتزامات المالية والمعاملات الدائنة والمدينة بكل سهولة ودقة.</p>
+        <a href="#download" class="cta-btn">تحميل التطبيق الآن</a>
+    </section>
+
+    <!-- Interactive Section -->
+    <div class="container">
+        <div class="cards-list">
+
+            <!-- Card 1: مميزات التطبيق -->
+            <div class="card">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <div class="card-title-group">
+                        <div class="card-icon">★</div>
+                        <div class="card-title">مميزات تطبيق تبيان</div>
+                    </div>
+                    <svg class="arrow-icon" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6z"/></svg>
+                </div>
+                <div class="card-body">
+                    <ul class="features-list">
+                        <li><b>إدارة دقيقة:</b> تتبع السجلات والديون بسهولة عالية.</li>
+                        <li><b>نسخ احتياطي:</b> حماية بياناتك وأرقامك بأعلى معايير الأمان.</li>
+                        <li><b>تقارير واضحة:</b> ملخصات مالية تساعدك على معرفة كافة التزاماتك.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Card 2: خطوات تسجيل الحساب -->
+            <div class="card">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <div class="card-title-group">
+                        <div class="card-icon">👤</div>
+                        <div class="card-title">خطوات تسجيل حساب جديد</div>
+                    </div>
+                    <svg class="arrow-icon" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6z"/></svg>
+                </div>
+                <div class="card-body">
+                    <div class="steps-list">
+                        
+                        <div class="step-item">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h4>تحميل التطبيق وتثبيته</h4>
+                                <p>قم بتحميل التطبيق من المتاجر المعتمدة وفتحه على هاتفك.</p>
+                            </div>
+                        </div>
+
+                        <div class="step-item">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h4>إدخال رقم الهاتف</h4>
+                                <p>أدخل رقم هاتفك وتأكد من استلام رمز التحقق عبر SMS.</p>
+                                <!-- مكان الصورة إن وجدت -->
+                                <!-- <img src="step1.png" class="step-img" alt="خطوة 1"> -->
+                            </div>
+                        </div>
+
+                        <div class="step-item">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h4>تأكيد الحساب والبدء</h4>
+                                <p>أدخل اسمك وبيانات النشاط وابدأ بإضافة أول سجل دين مباشرة.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3: مواصفات التطبيق -->
+            <div class="card">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <div class="card-title-group">
+                        <div class="card-icon">⚙</div>
+                        <div class="card-title">المواصفات والمتطلبات التقنية</div>
+                    </div>
+                    <svg class="arrow-icon" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6z"/></svg>
+                </div>
+                <div class="card-body">
+                    <p><b>النظام الموصى به:</b> يعمل على كافة أجهزة Android و iOS.</p>
+                    <p><b>الحجم:</b> خفيف جداً ولا يستهلك ذاكرة الجهاز.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <footer>
+            <p>&copy; 2026 Al-Murad Software Solutions | جميع الحقوق محفوظة لتطبيق تبيان</p>
+        </footer>
+    </div>
+
+    <!-- JavaScript لإغلاق الكروت السابقة تلقائياً -->
+    <script>
+        function toggleCard(headerElement) {
+            const clickedCard = headerElement.parentElement;
+            const allCards = document.querySelectorAll('.card');
+
+            allCards.forEach(card => {
+                if (card !== clickedCard) {
+                    card.classList.remove('active');
+                }
+            });
+
+            clickedCard.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
